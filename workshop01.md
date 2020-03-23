@@ -39,8 +39,10 @@ In this exercise, you will launch a new Linux instance, log in with SSH, and ins
 16. Scroll through the output and note that the http package was installed from the user data that your added when you created the instance
 
 ### **Task 3 : Access Metadata**
-17. At the Linux command prompt, retrieve a list of the available metadata by typing: **curl http://169.254.169.254/latest/meta-data/** 
-18. To see a value, add the name to the end of the URL. For example, to see the security groups, type: **curl http://169.254.169.254/latest/meta-data/security-groups**
+17. At the Linux command prompt, retrieve a list of the available metadata by typing:
+    - **curl http://169.254.169.254/latest/meta-data/** 
+18. To see a value, add the name to the end of the URL. For example, to see the security groups, type:
+    - **curl http://169.254.169.254/latest/meta-data/security-groups**
 19. Try other values as well. Names that end with a / indicate a longer list of sub-values. 
 20. Close the SSH window and terminate the instance
 
