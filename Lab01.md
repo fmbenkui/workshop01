@@ -1,36 +1,37 @@
-# AWS-FUNDAMENTALS-EXERCISES
+# AWS-FUNDAMENTALS-WorkShop01
 
-## **EXERCISE 1.1**
+## **Explore Amazon Linux Ec2 Instance**
 
 ### **Task 1 : Launch and Connect to a Linux Instance**
 In this exercise, you will launch a new Linux instance, log in with SSH, and install any security updates. 
 1. Launch an instance in the Amazon EC2 console. 
 2. Choose the Amazon Linux AMI (eg:Amazon Linux 2 AMI (HVM)). 
-3. Choose the t2.micro instance type. 
+3. Choose the **t2.micro** instance type. 
 4. Launch the instance in the default VPC. 
 5. Assign the instance a public IP address. 
 6. In the Advanced Details section, enter the following text as UserData : 
 
               ```
-            #!/bin/bash
-            #Install Apache Web Server and PHP
-            yum install -y httpd mysql 
-            amazon-linux-extras install -y php7.2
-            #Download Lab files
-            wget https://us-west-2-tcprod.s3.amazonaws.com/courses/ILT-TF-100-TECESS/v4.6.8/lab-1-build-a-web-server/scripts/lab-app.zip
-            unzip lab-app.zip -d /var/www/html/
-            #Turn on web server
-            chkconfig httpd on
-            service httpd start
+              #!/bin/bash
+              #Install Apache Web Server and PHP
+              yum install -y httpd mysql 
+              amazon-linux-extras install -y php7.2
+              #Download Lab files
+              wget https://github.com/fmbenkui/workshop01/raw/master/ec2-info.zip
+              unzip ec2-info -d /var/www/html/
+              echo "<?php phpinfo(); ?>" > /var/www/html/info.php
+              #Turn on web server
+              chkconfig httpd on
+              service httpd start
               ```
 
-7. Add a tag to the instance of Key: Name, Value: Exercise 1.1.
-8. Create a new security group called FistName-internet-firewall-sg. 
-9. Add a rule to FistName-internet-firewall-sg allowing SSH access from the IP address of your workstation (www.WhatsMyIP.org is a good way to determine your IP address). 
+7. Add a tag to the instance of Key: Name, Value: «fistName-web-linux» .
+8. Create a new security group called «fistName-internet-firewall-sg». 
+9. Add a rule to «FistName-internet-firewall-sg» allowing SSH access from the IP address of your workstation (www.WhatsMyIP.org is a good way to determine your IP address). 
 10. Launch the instance. 
-11. When prompted for a key pair, choose a key pair you already have or create a new one and download the private portion. Amazon generates a keyname.pem file, and you will need a keyname.ppk file to connect to the instance via SSH. Puttygen.exe is one utility that will create a .ppk file from a .pem file. 
+11. When prompted for a key pair, choose a key pair you already have or create a new one and download the private portion.           Amazon generates a fistName-key.pem file that you can use Downlad mobaxterm (https://mobaxterm.mobatek.net/download.html) to connect to the instance via SSH. If you already have putty you will need a keyname.ppk file to connect to the instance via SSH. Puttygen.exe is one utility that will create a .ppk file from a .pem file. 
 12. SSH into the instance using the public IP address, the user name ec2-user, and the keyname.ppk file. 
-13. From the command-line prompt, run sudo yum update—security -y. 
+13. From the command-line prompt, run **sudo yum update --security -y**. 
 
 ### **Task 2 : Monitor your Instance**
 14. Click in the monotoring tab
@@ -38,12 +39,12 @@ In this exercise, you will launch a new Linux instance, log in with SSH, and ins
 16. Scroll through the output and note that the http package was installed from the user data that your added when you created the instance
 
 ### **Task 3 : Access Metadata**
-17. At the Linux command prompt, retrieve a list of the available metadata by typing: curl http://169.254.169.254/latest/meta-data/ 
-18. To see a value, add the name to the end of the URL. For example, to see the security groups, type: curl http://169.254.169.254/latest/meta-data/security-groups 
+17. At the Linux command prompt, retrieve a list of the available metadata by typing: **curl http://169.254.169.254/latest/meta-data/** 
+18. To see a value, add the name to the end of the URL. For example, to see the security groups, type: **curl http://169.254.169.254/latest/meta-data/security-groups**
 19. Try other values as well. Names that end with a / indicate a longer list of sub-values. 
 20. Close the SSH window and terminate the instance
 
-## **EXERCISE 1.2**
+## **Explore Amazon Windows Ec2 Instance**
 
 ### **Task 1 : Launch a Windows Instance with Bootstrapping**
 In this exercise, you will launch a Windows instance and specify a very simple bootstrap script.
@@ -51,26 +52,27 @@ You will then confirm that the bootstrap script was executed on the instance.
 
 1. Launch an instance in the Amazon EC2 console.
 2. Choose the Microsoft Windows Server 2019 Base AMI. 
-3. Choose the m3.medium instance type.
+3. Choose the**m3.medium** instance type.
 4. Launch the instance in the default VPC. 
 5. Assign the instance a public IP address. 
 6. In the Advanced Details section, enter the following text as UserData: 
 
         ```
-        <script> md c:\temp </script> 
         <powershell>
+           Set-ExecutionPolicy Unrestricted -Force
+           New-Item -ItemType directory -Path 'C:\temp'
            Import-Module ServerManager
            Install-WindowsFeature web-server, web-webserver
            Install-WindowsFeature web-mgmt-tools
         </powershell>
         ```
 
-7. Add a tag to the instance of Key: Name, Value: Exercise 1.2. 
-8. Use the FistName-internet-firewall-sg security group from Exercise 1.1. 
+7. Add a tag to the instance of Key: Name, Value: fistName-web-windows. 
+8. Use the «fistName-internet-firewall-sg» security group from Exercise 1.1.
 9. Launch the instance. 
 10. Use the key pair from Exercise 1.1. 
-11. On the Connect Instance UI, decrypt the administrator password and then download the RDP file to attempt to connect to the instance. Your attempt should fail because the FistName-internet-firewall-sg security group does not allow RDP access. 
-12. Open the FistName-internet-firewall-sg security group and add a rule that allows RDP access from your IP address. 
+11. On the Connect Instance UI, decrypt the administrator password and then download the RDP file to attempt to connect to the instance. Your attempt should fail because the «fistName-internet-firewall-sg» security group does not allow RDP access. 
+12. Open the «fistName-internet-firewall-sg» security group and add a rule that allows RDP access from your IP address. 
 13. Attempt to access the instance via RDP again. 
 14. Once the RDP session is connected, open Windows Explorer and confirm that the c:\temp folder has been created.
 
@@ -92,7 +94,7 @@ You will then confirm that the bootstrap script was executed on the instance.
 ### **Task 4 : Test Termination Protection**
 26. In the action menu > select instance settings > change termination protection > set to be Enable.
 27. In the console, set the state of the instance to Stopped.
-28. In the action menu > select instance state > click on Terminate
+28. In the action menu > select instance state > click on Terminate.
 29. End the RDP session and terminate the instance.
 
 ## **EXERCISE 1.3 Launch a Spot Instance**
