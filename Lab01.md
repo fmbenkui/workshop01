@@ -12,10 +12,16 @@ In this exercise, you will launch a new Linux instance, log in with SSH, and ins
 6. In the Advanced Details section, enter the following text as UserData : 
 
               ```
-              #!/bin/sh
-              yum -y install httpd
-              chkconfig httpd on
-              /etc/init.d/httpd start
+            #!/bin/bash
+            #Install Apache Web Server and PHP
+            yum install -y httpd mysql 
+            amazon-linux-extras install -y php7.2
+            #Download Lab files
+            wget https://us-west-2-tcprod.s3.amazonaws.com/courses/ILT-TF-100-TECESS/v4.6.8/lab-1-build-a-web-server/scripts/lab-app.zip
+            unzip lab-app.zip -d /var/www/html/
+            #Turn on web server
+            chkconfig httpd on
+            service httpd start
               ```
 
 7. Add a tag to the instance of Key: Name, Value: Exercise 1.1.
