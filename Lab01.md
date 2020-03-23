@@ -1,4 +1,3 @@
-s3://formation-aws-fondamentaux/Formation onepoint Developing on AWS - Public0.pdf 
 # AWS-FUNDAMENTALS-EXERCISES
 
 ## **EXERCISE 1.1**
