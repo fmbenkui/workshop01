@@ -1,6 +1,6 @@
 # AWS-FUNDAMENTALS-WorkShop01
 
-## **Explore Amazon Linux Ec2 Instance**
+## **Lab01 : Explore Amazon Linux Ec2 Instance**
 
 ### **Task 1 : Launch and Connect to a Linux Instance**
 In this exercise, you will launch a new Linux instance, log in with SSH, and install any security updates. 
@@ -44,7 +44,7 @@ In this exercise, you will launch a new Linux instance, log in with SSH, and ins
 19. Try other values as well. Names that end with a / indicate a longer list of sub-values. 
 20. Close the SSH window and terminate the instance
 
-## **Explore Amazon Windows Ec2 Instance**
+## **Lab02 : Explore Amazon Windows Ec2 Instance**
 
 ### **Task 1 : Launch a Windows Instance with Bootstrapping**
 In this exercise, you will launch a Windows instance and specify a very simple bootstrap script.
@@ -97,7 +97,7 @@ You will then confirm that the bootstrap script was executed on the instance.
 28. In the action menu > select instance state > click on Terminate.
 29. End the RDP session and terminate the instance.
 
-## **Launch a Spot Instance**
+## **Lab03 : Launch a Spot Instance**
 
 In this exercise, you will create a Spot Instance.
 1. In the Amazon EC2 console, go to the Spot Request page.
