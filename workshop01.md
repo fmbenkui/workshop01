@@ -54,7 +54,7 @@ You will then confirm that the bootstrap script was executed on the instance.
 
 1. Launch an instance in the Amazon EC2 console.
 2. Choose the Microsoft Windows Server 2019 Base AMI. 
-3. Choose the**m3.medium** instance type.
+3. Choose the **t2.micro** instance type.
 4. Launch the instance in the default VPC. 
 5. Assign the instance a public IP address. 
 6. In the Advanced Details section, enter the following text as UserData: 
@@ -78,26 +78,18 @@ You will then confirm that the bootstrap script was executed on the instance.
 13. Attempt to access the instance via RDP again. 
 14. Once the RDP session is connected, open Windows Explorer and confirm that the c:\temp folder has been created.
 
-### **Task 2 : Confirm That Instance Stores Are Lost When an Instance Is Stopped**
-15. Create a new folder named c:\test. 
-16. Log out of the RDP session. 
-17. In the console, set the state of the instance to Stopped. 
-18. Once the instance is stopped, start it again. 
-19. Log back into the instance using RDP. 
-20. Open Windows Explorer and confirm that the c:\test folder is gone.
-
-### **Task 3 : Resize your Instance**
- 21. In the action menu > select instance state > click on Stop
- 22. Wait for the Intance state to display stopped
- 23. In the action menu > select instance settings > change instance type
- 24. then configure instance type to t2.small
- 25. click apply
+### **Task 2 : Resize your Instance**
+15. In the action menu > select instance state > click on Stop
+16. Wait for the Intance state to display stopped
+17. In the action menu > select instance settings > change instance type
+18. then configure instance type to t2.small
+19. click apply
  
-### **Task 4 : Test Termination Protection**
-26. In the action menu > select instance settings > change termination protection > set to be Enable.
-27. In the console, set the state of the instance to Stopped.
-28. In the action menu > select instance state > click on Terminate.
-29. End the RDP session and terminate the instance.
+### **Task 3 : Test Termination Protection**
+20. In the action menu > select instance settings > change termination protection > set to be Enable.
+21. In the console, set the state of the instance to Stopped.
+22. In the action menu > select instance state > click on Terminate.
+23. End the RDP session and terminate the instance.
 
 ## **Lab03 : Launch a Spot Instance**
 
