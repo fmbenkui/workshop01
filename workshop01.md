@@ -1,4 +1,4 @@
-# AWS-FUNDAMENTALS-WorkShop01
+# AWS-WorkShop01
 
 ## **Lab01 : Explore Amazon Linux Ec2 Instance**
 
