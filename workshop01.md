@@ -95,7 +95,7 @@ You will then confirm that the bootstrap script was executed on the instance.
 
 In this exercise, you will create a Spot Instance.
 1. In the Amazon EC2 console, go to the Spot Request page.
-2. Look at the pricing history for m3.medium, especially the recent price. 
+2. Look at the pricing history for t2.medium, especially the recent price. 
 3. Make a note of the most recent price and Availability Zone.
 4. Launch an instance in the Amazon EC2 console. 
 5. Choose the Amazon Linux AMI. 
